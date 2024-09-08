@@ -8,6 +8,12 @@ const port = process.env.APP_PORT || 5000
 // Middleware untuk parsing JSON body
 app.use(express.json());
 
+app.get("/" , (req, res) =>{
+    res.status(200).json({
+        message: "Hello World"
+    })
+})
+
 // Handler untuk permintaan POST (saat webhook mengirimkan data)
 app.post('/webhook', (req, res) => {
    try {
