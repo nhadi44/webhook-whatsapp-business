@@ -1,18 +1,13 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000; // Gunakan PORT yang disediakan oleh Heroku atau fallback ke 3000 jika tidak ada
 
-const port = 5000
-
-// Middleware untuk parsing JSON body
 app.use(express.json());
 
-app.get("/" , (req, res) =>{
-    res.status(200).json({
-        message: "Hello World"
-    })
-})
+app.get('/', (req, res) => {
+   res.send('Hello World!');
+});
 
-
-app.listen(port, () => {
-   console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+   console.log(`Server is running on port ${PORT}`);
 });
