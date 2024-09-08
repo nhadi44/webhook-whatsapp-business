@@ -13,7 +13,10 @@ app.use(express.json());
 app.post("/webhook", (req, res) => {
   try {
     const body = req.body; // Mengambil body dari request
-    console.log("Received POST request:", body);
+    //  console.log("Received POST request:", body);
+
+    const data = body.entry[0].changes[0].value.statuses[0];
+    console.log("Data:", data);
 
     if (body.messages) {
       body.messages.forEach((message) => {
@@ -25,7 +28,7 @@ app.post("/webhook", (req, res) => {
       });
     }
 
-    res.json({ message: "Received POST request", data: body });
+    res.json({ message: "Received POST request", data: data });
   } catch (error) {
     console.error("Error parsing request body:", error);
     res.status(400).json({ message: "Failed to parse request body" });
